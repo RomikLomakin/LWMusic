@@ -1,14 +1,13 @@
 // import { CssBaseline } from '@mui/material'
-import { Route, Router, Routes, useLocation } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
+import { ToastContainer, Zoom } from 'react-toastify'
 
-import { AuthProvider } from '@/contexts/authContext.tsx'
+import { AuthProvider } from '@/contexts/authContext'
 import { GlobalStyles } from '@mui/material'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 
+import { MainScreen } from '@/components/MainScreen'
 import { StartScreen } from '@/components/StartScreen'
-import { Authorization } from '@/components/authorization/Authorization.tsx'
-import { SignIn } from '@/components/authorization/SignIn.tsx'
-import { SignUp } from '@/components/authorization/SignUp.tsx'
 
 const theme = createTheme({
   components: {
@@ -19,22 +18,37 @@ const theme = createTheme({
       },
       styleOverrides: {
         root: {
-          '&:active': {
-            '&:hover': {
-              backgroundColor: '#000000',
+          '&.MuiButton-contained': {
+            '&.Mui-disabled': {
+              backgroundColor: '#B79EFF',
+              color: '#c1ade3',
             },
-            backgroundColor: '#000000',
-            boxShadow: 'none',
+            '&:active': {
+              '&:hover': {
+                backgroundColor: '#7949C5',
+              },
+              backgroundColor: '#7949C5',
+              boxShadow: 'none',
+            },
+            '&:hover': {
+              backgroundColor: '#A46CFF',
+              boxShadow: 'none',
+            },
+            backgroundColor: '#B79EFF',
+            color: '#25263E',
+            paddingBottom: '16px',
+            paddingTop: '16px',
           },
-          '&:hover': {
-            backgroundColor: '#3C2F4A',
-            boxShadow: 'none',
+          '&.MuiButton-outlined': {
+            border: '2px solid #3C2F4A',
+            color: '#25263E',
+            fontSize: '14px',
+            paddingBottom: '12px',
+            paddingTop: '12px',
           },
-          backgroundColor: '#180022',
           borderRadius: '16px',
           boxShadow: 'none',
-          paddingBottom: '14px',
-          paddingTop: '14px',
+          lineHeight: '20px',
         },
       },
     },
@@ -42,8 +56,8 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           '& .MuiInputBase-input': {
-            paddingBottom: '15px', //
-            paddingTop: '15px', // Настраиваем верхний padding для текста
+            // paddingBottom: '15px', //
+            // paddingTop: '15px', // Настраиваем верхний padding для текста
           },
           '&.Mui-focused': {
             '&:hover': {
@@ -79,17 +93,25 @@ export function App() {
     <>
       <ThemeProvider theme={theme}>
         <GlobalStyles styles={{ body: { color: '#180022' } }} />
+        <ToastContainer
+          autoClose={5000}
+          closeOnClick
+          draggable
+          hideProgressBar={false}
+          newestOnTop={false}
+          pauseOnFocusLoss
+          pauseOnHover
+          position="top-center"
+          rtl={false}
+          theme="light"
+          transition={Zoom}
+        />
         <AuthProvider>
           <Routes>
-            <Route element={<StartScreen />} path="/login" />
+            <Route element={<StartScreen />} path="/" />
             <Route element={<StartScreen />} path="/register" />
+            <Route element={<MainScreen />} path="/main" />
           </Routes>
-          {/*{location.pathname === '/login' ||*/}
-          {/*location.pathname === '/register' ? (*/}
-          {/*  <StartScreen />*/}
-          {/*) : (*/}
-          {/*  <div>Вы на главной</div>*/}
-          {/*)}*/}
         </AuthProvider>
       </ThemeProvider>
     </>

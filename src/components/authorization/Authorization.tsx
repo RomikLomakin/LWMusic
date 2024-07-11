@@ -18,7 +18,7 @@ export function Authorization() {
       </div>
       {/*<SignUp />*/}
       {location.pathname === '/register' && <SignUp />}
-      {location.pathname === '/login' && <SignIn />}
+      {location.pathname === '/' && <SignIn />}
 
       <Button
         disabled={true}
@@ -35,6 +35,7 @@ export function Authorization() {
           border: '1px solid #DFDDDF',
           color: '#180022',
         }}
+        variant="outlined"
       >
         <GoogleIcon className="mr-3" />
         Войти через google

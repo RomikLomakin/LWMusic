@@ -1,21 +1,69 @@
 @import './preflight.scss';
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import 'react-toastify/dist/ReactToastify.css';
+
+@font-face {
+  font-family: 'Neue Machina Regular';
+  src: url('./assets/fonts/NeueMachina-Regular.eot');
+  src: local('Neue Machina Regular'), local('NeueMachina-Regular'),
+  url('./assets/fonts/NeueMachina-Regular.eot?#iefix') format('embedded-opentype'),
+  url('./assets/fonts/NeueMachina-Regular.woff2') format('woff2'),
+  url('./assets/fonts/NeueMachina-Regular.woff') format('woff'),
+  url('./assets/fonts/NeueMachina-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Neue Machina Bold';
+  src: url('./assets/fonts/NeueMachina-Bold.eot');
+  src: local('Neue Machina Bold'), local('NeueMachina-Bold'),
+  url('./assets/fonts/NeueMachina-Bold.eot?#iefix') format('embedded-opentype'),
+  url('./assets/fonts/NeueMachina-Bold.woff2') format('woff2'),
+  url('./assets/fonts/NeueMachina-Bold.woff') format('woff'),
+  url('./assets/fonts/NeueMachina-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Neue Machina Ultrabold';
+  src: url('./assets/fonts/NeueMachina-Ultrabold.eot');
+  src: local('Neue Machina Ultrabold'), local('NeueMachina-Ultrabold'),
+  url('./assets/fonts/NeueMachina-Ultrabold.eot?#iefix') format('embedded-opentype'),
+  url('./assets/fonts/NeueMachina-Ultrabold.woff2') format('woff2'),
+  url('./assets/fonts/NeueMachina-Ultrabold.woff') format('woff'),
+  url('./assets/fonts/NeueMachina-Ultrabold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
 
 /*@tailwind base;*/
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /*--toastify-text-color-light: #333F48;*/
+}
 
-.raleway-basic {
-  font-family: "Raleway", sans-serif;
+
+.font-basic {
+  font-family: 'Neue Machina Regular', sans-serif;
   font-optical-sizing: auto;
-  font-weight: 400;
+  font-weight: normal;
   font-style: normal;
 }
 
-.raleway-bold {
-  font-family: "Raleway", sans-serif;
+.font-bold {
+  font-family: "Neue Machina Bold", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 700;
+  font-weight: bold;
+  font-style: normal;
+}
+
+.font-ultrabold {
+  font-family: "Neue Machina Ultrabold", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
   font-style: normal;
 }

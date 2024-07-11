@@ -1,5 +1,7 @@
+import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 
+import { store } from '@/store'
 import ReactDOM from 'react-dom/client'
 
 import { App } from './App'
@@ -11,6 +13,8 @@ const root = ReactDOM.createRoot(rootElement)
 
 root.render(
   <BrowserRouter>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </BrowserRouter>,
 )

@@ -5,4 +5,11 @@ export default {
     preflight: false,
   },
   plugins: [],
+  theme: {
+    extend: {
+      colors: {
+        'brand-color': '#25263E',
+      },
+    },
+  },
 }
