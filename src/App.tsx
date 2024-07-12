@@ -48,6 +48,7 @@ const theme = createTheme({
           },
           borderRadius: '16px',
           boxShadow: 'none',
+          fontFamily: 'inherit',
           lineHeight: '20px',
         },
       },
@@ -77,12 +78,26 @@ const theme = createTheme({
           '&:hover:not(.Mui-disabled):before': {
             borderBottom: 'none',
           },
-          backgroundColor: '#E6E4FB',
+          // backgroundColor: '#E6E4FB',
           border: 'none',
           borderRadius: '16px',
         },
       },
     },
+  },
+  typography: {
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      // '"Segoe UI"',
+      'PP Neue Machina Plain',
+      // '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
   },
 })
 

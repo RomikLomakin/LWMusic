@@ -71,7 +71,7 @@ export function SignIn() {
         </div>
 
         <Button
-          className="w-full"
+          className="w-full font-neue"
           onClick={handleLogin}
           type="button"
           variant="contained"

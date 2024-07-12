@@ -4,7 +4,7 @@ import { MembersIcon } from '@/components/icons/MembersIcon'
 
 export function Room({ room }: { room: RoomType }) {
   return (
-    <div className="flex items-center justify-between bg-[#EEEDF6] rounded-xl pr-8">
+    <div className="flex items-center justify-between bg-white rounded-xl pr-8">
       <div className="flex items-center">
         <div className="mr-7">
           <img alt="Превью комнаты" src={room.image} />

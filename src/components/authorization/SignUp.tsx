@@ -59,7 +59,7 @@ export function SignUp() {
 
   return (
     <div>
-      <h1 className="text-[38px] font-bold mb-5">Регистрация</h1>
+      <h1 className="text-[38px] font-ultrabold mb-5">Регистрация</h1>
       <Box component="form">
         <div className="flex flex-col gap-y-3 mb-6">
           <TextField

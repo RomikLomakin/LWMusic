@@ -1,17 +1,28 @@
 @import './preflight.scss';
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 @import 'react-toastify/dist/ReactToastify.css';
 
 @font-face {
-  font-family: 'Neue Machina Regular';
-  src: url('./assets/fonts/NeueMachina-Regular.eot');
-  src: local('Neue Machina Regular'), local('NeueMachina-Regular'),
-  url('./assets/fonts/NeueMachina-Regular.eot?#iefix') format('embedded-opentype'),
-  url('./assets/fonts/NeueMachina-Regular.woff2') format('woff2'),
-  url('./assets/fonts/NeueMachina-Regular.woff') format('woff'),
-  url('./assets/fonts/NeueMachina-Regular.ttf') format('truetype');
+  font-family: 'PP Neue Machina Plain';
+  src: url('./assets/fonts/PPNeueMachina-PlainRegular.eot');
+  src: url('./assets/fonts/PPNeueMachina-PlainRegular.eot?#iefix') format('embedded-opentype'),
+  url('./assets/fonts/PPNeueMachina-PlainRegular.woff2') format('woff2'),
+  url('./assets/fonts/PPNeueMachina-PlainRegular.woff') format('woff'),
+  url('./assets/fonts/PPNeueMachina-PlainRegular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Neue Machina Plain UltraBold';
+  src: url('./assets/fonts/PPNeueMachina-PlainUltrabold.eot');
+  src: url('./assets/fonts/PPNeueMachina-PlainUltrabold.eot?#iefix') format('embedded-opentype'),
+  url('./assets/fonts/PPNeueMachina-PlainUltrabold.woff2') format('woff2'),
+  url('./assets/fonts/PPNeueMachina-PlainUltrabold.woff') format('woff'),
+  url('./assets/fonts/PPNeueMachina-PlainUltrabold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -22,18 +33,6 @@
   url('./assets/fonts/NeueMachina-Bold.woff2') format('woff2'),
   url('./assets/fonts/NeueMachina-Bold.woff') format('woff'),
   url('./assets/fonts/NeueMachina-Bold.ttf') format('truetype');
-  font-weight: bold;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Neue Machina Ultrabold';
-  src: url('./assets/fonts/NeueMachina-Ultrabold.eot');
-  src: local('Neue Machina Ultrabold'), local('NeueMachina-Ultrabold'),
-  url('./assets/fonts/NeueMachina-Ultrabold.eot?#iefix') format('embedded-opentype'),
-  url('./assets/fonts/NeueMachina-Ultrabold.woff2') format('woff2'),
-  url('./assets/fonts/NeueMachina-Ultrabold.woff') format('woff'),
-  url('./assets/fonts/NeueMachina-Ultrabold.ttf') format('truetype');
   font-weight: 800;
   font-style: normal;
 }
@@ -46,24 +45,25 @@
   /*--toastify-text-color-light: #333F48;*/
 }
 
-
 .font-basic {
-  font-family: 'Neue Machina Regular', sans-serif;
+  font-family: 'PP Neue Machina Plain', sans-serif;
   font-optical-sizing: auto;
   font-weight: normal;
   font-style: normal;
 }
 
-.font-bold {
+.font-neue {
   font-family: "Neue Machina Bold", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: bold;
-  font-style: normal;
+  font-weight: 800!important;
 }
 
 .font-ultrabold {
-  font-family: "Neue Machina Ultrabold", sans-serif;
+  font-family: "PP Neue Machina Plain UltraBold", sans-serif;
   font-optical-sizing: auto;
   font-weight: 800;
   font-style: normal;
+}
+
+body {
+  font-family: 'PP Neue Machina Plain', sans-serif;
 }
