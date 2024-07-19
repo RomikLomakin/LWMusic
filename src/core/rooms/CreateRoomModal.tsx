@@ -115,7 +115,7 @@ export function CreateRoomModal({
     }
   }
 
-  const handleFiles = (files: FileBase64) => {
+  const handleFiles = (files: FileList) => {
     console.log('files', files)
     // if (files.base64) {
     setUrl(files.base64)
@@ -222,7 +222,7 @@ export function CreateRoomModal({
                   <ReactFileReader
                     base64={true}
                     fileTypes={['.png', '.jpg']}
-                    handleFiles={() => handleFiles}
+                    handleFiles={handleFiles}
                   >
                     <Button className="w-full mb-2" variant="outlined">
                       Загрузить обложку

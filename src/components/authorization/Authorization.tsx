@@ -12,7 +12,7 @@ export function Authorization() {
   console.log('location', location)
 
   return (
-    <div className="w-[424px] px-10 py-[38px] bg-white rounded-xl m-0.5 flex flex-col justify-between">
+    <div className="w-[424px] px-10 py-[38px] bg-gray-block rounded-xl m-0.5 flex flex-col justify-between">
       <div>
         <img alt="Логотип" src={logo} />
       </div>
@@ -31,7 +31,7 @@ export function Authorization() {
             borderColor: '#180022',
             color: '#fff',
           },
-          backgroundColor: '#fff',
+          backgroundColor: 'transparent',
           border: '1px solid #DFDDDF',
           color: '#180022',
         }}

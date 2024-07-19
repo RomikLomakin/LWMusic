@@ -9,6 +9,7 @@ export default {
     extend: {
       colors: {
         'brand-color': '#25263E',
+        'gray-block': '#ECEDF2',
         'secondary-text': '#5C5D7E',
       },
     },
