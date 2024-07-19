@@ -1,5 +1,10 @@
+type Category = {
+  id: number
+  title: string
+}
+
 export type RoomType = {
-  description: string
+  categories: Category[]
   id: string
   image: string
   name: string

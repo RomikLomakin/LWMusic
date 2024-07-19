@@ -5,9 +5,9 @@ export function MembersIcon(props: SvgIconProps) {
     <SvgIcon {...props}>
       <svg
         fill="none"
-        height="20"
+        // height="20"
         viewBox="0 0 28 20"
-        width="28"
+        // width="28"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path

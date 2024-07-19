@@ -1,45 +1,25 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import { CreateRoomModal } from '@/core/rooms/CreateRoomModal.tsx'
 import { Room } from '@/core/rooms/Room'
+import { useRooms } from '@/core/rooms/hooks/useRooms.ts'
 import { RoomType } from '@/core/rooms/types'
-import { db } from '@/firebase.ts'
-import { Backdrop, Button, Modal } from '@mui/material'
-import { animated, useSpring } from '@react-spring/web'
-// import { animated, useSpring } from '@react-spring/web'
-import {
-  QueryDocumentSnapshot,
-  QuerySnapshot,
-  collection,
-  getDocs,
-} from 'firebase/firestore'
+import { Button } from '@mui/material'
 
 export function Rooms() {
+  const { error, fetchRooms, loading, rooms } = useRooms()
+
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const handleClose = () => setIsOpen(false)
-
-  const [rooms, setRooms] = useState<RoomType[]>([])
 
   const handleOpenCreateRoom = () => {
     setIsOpen(true)
   }
 
-  useEffect(() => {
-    const fetchRooms = async () => {
-      const roomsCollection = collection(db, 'rooms')
-      const roomsSnapshot = (await getDocs(
-        roomsCollection,
-      )) as QuerySnapshot<RoomType>
-      const roomsList: RoomType[] = []
-      roomsSnapshot.docs.forEach((doc: QueryDocumentSnapshot<RoomType>) => {
-        roomsList.push(doc.data())
-      })
-      console.log('roomsList', roomsList)
-      setRooms(roomsList)
-    }
-
+  // TODO возможно прикольно было бы запрашивать конкретную комнату и просто добавлять в массив, чтобы заново не тянуть все
+  const handleRoomCreated = () => {
     fetchRooms()
-  }, [])
+  }
 
   return (
     <div className="bg-[#ECEDF2] flex-1 rounded-[20px] px-10 py-7">
@@ -54,11 +34,19 @@ export function Rooms() {
         </Button>
       </div>
 
-      {rooms.map((room: RoomType, index) => (
-        <Room key={index} room={room} />
-      ))}
+      <div className="flex flex-col gap-y-[2px]">
+        {loading && <span>Загружаем...</span>}
 
-      <CreateRoomModal handleClose={handleClose} isOpen={isOpen} />
+        {rooms.map((room: RoomType, index) => (
+          <Room key={index} room={room} />
+        ))}
+      </div>
+
+      <CreateRoomModal
+        handleClose={handleClose}
+        isOpen={isOpen}
+        onRoomCreated={handleRoomCreated}
+      />
     </div>
   )
 }

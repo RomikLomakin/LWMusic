@@ -64,6 +64,31 @@
   font-style: normal;
 }
 
+.btn-loading {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  &::before {
+    position: absolute;
+    content: '';
+    display: block;
+    width: 101%;
+    height: 160%;
+    background: linear-gradient(90deg, transparent, red, red, red, red, transparent);
+    /*animation: rotation_481 5000ms infinite linear;*/
+  }
+}
+
+@keyframes rotation_481 {
+  0% {
+    transform: rotateZ(0deg);
+  }
+
+  0% {
+    transform: rotateZ(360deg);
+  }
+}
+
 body {
   font-family: 'PP Neue Machina Plain', sans-serif;
 }

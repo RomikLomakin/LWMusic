@@ -11,6 +11,19 @@ import { StartScreen } from '@/components/StartScreen'
 
 const theme = createTheme({
   components: {
+    MuiAutocomplete: {
+      styleOverrides: {
+        root: {
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+              border: 'none',
+            },
+            backgroundColor: '#fff',
+            borderRadius: '16px',
+          },
+        },
+      },
+    },
     MuiButton: {
       defaultProps: {
         // Отключить эффект нажатия
@@ -18,30 +31,51 @@ const theme = createTheme({
       },
       styleOverrides: {
         root: {
-          '&.MuiButton-contained': {
-            '&.Mui-disabled': {
-              backgroundColor: '#B79EFF',
-              color: '#c1ade3',
-            },
-            '&:active': {
-              '&:hover': {
-                backgroundColor: '#7949C5',
+          '&.MuiButton-colorError': {
+            '&.MuiButton-outlined': {
+              '&.Mui-disabled': {
+                opacity: 0.5,
               },
-              backgroundColor: '#7949C5',
-              boxShadow: 'none',
+              '&:active': {
+                boxShadow: 'none',
+              },
+              '&:hover': {
+                backgroundColor: '#FF849A',
+                boxShadow: 'none',
+                color: 'white',
+              },
+              border: '2px solid #FF849A',
+              color: '#FF849A',
             },
-            '&:hover': {
-              backgroundColor: '#A46CFF',
-              boxShadow: 'none',
+          },
+          '&.MuiButton-colorPrimary': {
+            '&.MuiButton-contained': {
+              '&.Mui-disabled': {
+                opacity: 0.5,
+              },
+              '&:active': {
+                '&:hover': {
+                  backgroundColor: '#7949C5',
+                },
+                backgroundColor: '#7949C5',
+                boxShadow: 'none',
+              },
+              '&:hover': {
+                backgroundColor: '#A46CFF',
+                boxShadow: 'none',
+              },
+              backgroundColor: '#B79EFF',
+              color: '#25263E',
+              paddingBottom: '16px',
+              paddingTop: '16px',
             },
-            backgroundColor: '#B79EFF',
-            color: '#25263E',
-            paddingBottom: '16px',
-            paddingTop: '16px',
+
+            '&.MuiButton-outlined': {
+              border: '2px solid #3C2F4A',
+              color: '#25263E',
+            },
           },
           '&.MuiButton-outlined': {
-            border: '2px solid #3C2F4A',
-            color: '#25263E',
             fontSize: '14px',
             paddingBottom: '12px',
             paddingTop: '12px',
@@ -61,10 +95,10 @@ const theme = createTheme({
             // paddingTop: '15px', // Настраиваем верхний padding для текста
           },
           '&.Mui-focused': {
-            '&:hover': {
-              backgroundColor: '#E6E4FB',
+            '& .MuiInputLabel-root': {
+              color: 'red',
             },
-            backgroundColor: '#E6E4FB',
+            backgroundColor: '#fff',
           },
           '&:after': {
             borderBottom: 'none',
@@ -73,16 +107,30 @@ const theme = createTheme({
             borderBottom: 'none',
           },
           '&:hover': {
-            backgroundColor: '#DEDBFF',
+            backgroundColor: '#fff',
           },
           '&:hover:not(.Mui-disabled):before': {
             borderBottom: 'none',
           },
-          // backgroundColor: '#E6E4FB',
+          backgroundColor: '#fff',
           border: 'none',
           borderRadius: '16px',
         },
       },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          '&.Mui-focused': {
+            color: '#8B8DB3',
+          },
+        },
+      },
+    },
+  },
+  palette: {
+    error: {
+      main: '#FF849A',
     },
   },
   typography: {
