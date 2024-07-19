@@ -24,7 +24,7 @@ export function SignIn() {
 
     signInWithEmailAndPassword(auth, email, password).then(resp => {
       console.log('resp', resp)
-      navigate('/main')
+      navigate('/rooms')
       console.log('auth', auth.currentUser)
     })
   }
@@ -37,7 +37,7 @@ export function SignIn() {
           payload: user,
           type: 'add-user',
         } satisfies AddUserAction)
-        navigate('/main')
+        navigate('/rooms')
       }
     })
   }, [])

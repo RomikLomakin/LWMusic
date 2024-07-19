@@ -2,19 +2,11 @@ import React, { useState } from 'react'
 import ReactFileReader from 'react-file-reader'
 import { toast } from 'react-toastify'
 
-import { useRooms } from '@/core/rooms/hooks/useRooms.ts'
+import { Category, FileBase64 } from '@/core/rooms/types.ts'
 import { db } from '@/firebase.ts'
-import {
-  Autocomplete,
-  Backdrop,
-  Box,
-  Button,
-  CircularProgress,
-  Modal,
-} from '@mui/material'
+import { Autocomplete, Box, Button, Modal } from '@mui/material'
 import TextField from '@mui/material/TextField'
 import { animated, useSpring } from '@react-spring/web'
-import { clsx } from 'clsx'
 import { addDoc, collection } from 'firebase/firestore'
 
 import { MembersIcon } from '@/components/icons/MembersIcon.tsx'
@@ -84,7 +76,7 @@ export function CreateRoomModal({
   onRoomCreated: () => void
 }) {
   const [roomName, setRoomName] = useState('')
-  const [categoryList, setCategoryList] = useState([])
+  const [categoryList, setCategoryList] = useState<Category[]>([])
   const [url, setUrl] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
@@ -107,21 +99,30 @@ export function CreateRoomModal({
       await addDoc(collection(db, 'rooms'), room)
       onRoomCreated()
       handleClose()
-    } catch (err) {
-      const isErrorSize = err.message.includes('The value of property "image')
-      toast.error(
-        isErrorSize ? 'Размер обложки не должен превышать 1МБ' : err.message,
-      )
+    } catch (error) {
+      if (error instanceof Error) {
+        const isErrorSize = error.message.includes(
+          'The value of property "image"',
+        )
+        toast.error(
+          isErrorSize
+            ? 'Размер обложки не должен превышать 1МБ'
+            : error.message,
+        )
+      }
     } finally {
       setLoading(false)
     }
   }
 
-  const handleFiles = files => {
+  const handleFiles = (files: FileBase64) => {
+    console.log('files', files)
+    // if (files.base64) {
     setUrl(files.base64)
+    // }
   }
 
-  const categoryOptions = [
+  const categoryOptions: Category[] = [
     { id: 1, title: 'Приколы' },
     { id: 2, title: 'Веселые песни' },
     { id: 3, title: 'Научные фильмы' },
@@ -175,10 +176,12 @@ export function CreateRoomModal({
               <Autocomplete
                 filterSelectedOptions
                 getOptionLabel={option => option.title}
-                isOptionEqualToValue={(option, value) => option.id === value.id}
+                isOptionEqualToValue={(option: Category, value: Category) =>
+                  option.id === value.id
+                }
                 multiple
                 noOptionsText="Нет категорий"
-                onChange={(event, newValue) => {
+                onChange={(_, newValue: Category[]) => {
                   setCategoryList(newValue)
                 }}
                 options={categoryOptions}
@@ -219,7 +222,7 @@ export function CreateRoomModal({
                   <ReactFileReader
                     base64={true}
                     fileTypes={['.png', '.jpg']}
-                    handleFiles={handleFiles}
+                    handleFiles={() => handleFiles}
                   >
                     <Button className="w-full mb-2" variant="outlined">
                       Загрузить обложку

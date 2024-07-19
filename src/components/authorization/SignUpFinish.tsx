@@ -1,6 +1,5 @@
 import { useState } from 'react'
 
-import avatar1 from '@/assets/av-1.png'
 import { Box } from '@mui/material'
 import TextField from '@mui/material/TextField'
 
@@ -42,7 +41,7 @@ export function SignUpFinish() {
         <div className="">
           <span>Предлагаемые аватары</span>
           <div className="" onClick={handleSelectAvatar}>
-            <img alt="1" src={avatar1} />
+            {/*<img alt="1" src={avatar1} />*/}
           </div>
         </div>
       </div>

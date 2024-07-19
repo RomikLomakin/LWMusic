@@ -164,7 +164,7 @@ export function App() {
           newestOnTop={false}
           pauseOnFocusLoss
           pauseOnHover
-          position="top-center"
+          position="top-right"
           rtl={false}
           theme="light"
           transition={Zoom}
@@ -173,7 +173,7 @@ export function App() {
           <Routes>
             <Route element={<StartScreen />} path="/" />
             <Route element={<StartScreen />} path="/register" />
-            <Route element={<MainScreen />} path="/main" />
+            <Route element={<MainScreen />} path="/rooms" />
           </Routes>
         </AuthProvider>
       </ThemeProvider>

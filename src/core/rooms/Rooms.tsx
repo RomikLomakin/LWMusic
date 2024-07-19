@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 import { CreateRoomModal } from '@/core/rooms/CreateRoomModal.tsx'
 import { Room } from '@/core/rooms/Room'
@@ -7,7 +7,7 @@ import { RoomType } from '@/core/rooms/types'
 import { Button } from '@mui/material'
 
 export function Rooms() {
-  const { error, fetchRooms, loading, rooms } = useRooms()
+  const { fetchRooms, loading, rooms } = useRooms()
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const handleClose = () => setIsOpen(false)
