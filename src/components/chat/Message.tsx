@@ -5,15 +5,15 @@ import { clsx } from 'clsx'
 import { MemberIcon } from '@/components/icons/MemberIcon.tsx'
 
 export function Message({ message, user }) {
-  const userUid = useSelector(state => state.user.uid)
+  const userUid = useSelector(state => state.user?.uid)
   const isMyMessage = message.uid === userUid
 
   return (
     <div className={clsx('flex', isMyMessage && 'justify-end')}>
       {!isMyMessage && (
-        <div className="flex justify-center items-center w-7 h-7 rounded-full mr-2">
-          {user.avatar ? (
-            <img alt="Аватар" src={user.avatar} />
+        <div className="flex justify-center items-center w-7 h-7 rounded-full mr-2 bg-accent">
+          {user?.avatar ? (
+            <img alt="Аватар" src={user?.avatar} />
           ) : (
             <MemberIcon className="fill-brand-color" sx={{ width: '14px' }} />
           )}
@@ -23,7 +23,7 @@ export function Message({ message, user }) {
       <div className="">
         {!isMyMessage && (
           <span className="text-secondary-text text-xs font-neue">
-            {user.login}
+            {user?.login}
           </span>
         )}
 
@@ -32,7 +32,6 @@ export function Message({ message, user }) {
             'flex',
             'justify-between',
             'items-end',
-            'bg-white',
             'rounded-tr-xl',
             'rounded-bl-xl',
             'py-3',
