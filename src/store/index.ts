@@ -4,8 +4,8 @@ import { configureStore } from '@reduxjs/toolkit'
 
 type State = {
   user: {
-    displayName: string
     email: string
+    login: string
     uid: string
   } | null
 }
@@ -29,12 +29,12 @@ const reducer = (state = initialState, action: Action): State => {
   console.log('action', action)
   switch (action.type) {
     case 'add-user':
-      const { displayName, email, uid } = action.payload
+      const { email, login, uid } = action.payload
       return {
         ...state,
         user: {
-          displayName,
           email,
+          login,
           uid,
         },
       }

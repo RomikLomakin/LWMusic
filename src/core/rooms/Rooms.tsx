@@ -1,12 +1,14 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { CreateRoomModal } from '@/core/rooms/CreateRoomModal.tsx'
-import { Room } from '@/core/rooms/Room'
+import { RoomItem } from '@/core/rooms/RoomItem.tsx'
 import { useRooms } from '@/core/rooms/hooks/useRooms.ts'
 import { RoomType } from '@/core/rooms/types'
 import { Button } from '@mui/material'
 
 export function Rooms() {
+  const navigate = useNavigate()
   const { fetchRooms, loading, rooms } = useRooms()
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -19,6 +21,11 @@ export function Rooms() {
   // TODO возможно прикольно было бы запрашивать конкретную комнату и просто добавлять в массив, чтобы заново не тянуть все
   const handleRoomCreated = () => {
     fetchRooms()
+  }
+
+  const handleOpenRoom = room => {
+    console.log('room', room)
+    navigate(`/rooms/${room.id}`)
   }
 
   return (
@@ -38,7 +45,11 @@ export function Rooms() {
         {loading && <span>Загружаем...</span>}
 
         {rooms.map((room: RoomType, index) => (
-          <Room key={index} room={room} />
+          <RoomItem
+            key={index}
+            onClick={() => handleOpenRoom(room)}
+            room={room}
+          />
         ))}
       </div>
 

@@ -7,7 +7,7 @@ import { db } from '@/firebase.ts'
 import { Autocomplete, Box, Button, Modal } from '@mui/material'
 import TextField from '@mui/material/TextField'
 import { animated, useSpring } from '@react-spring/web'
-import { addDoc, collection } from 'firebase/firestore'
+import { addDoc, collection, updateDoc } from 'firebase/firestore'
 
 import { MembersIcon } from '@/components/icons/MembersIcon.tsx'
 
@@ -95,8 +95,12 @@ export function CreateRoomModal({
       image: url,
       name: roomName,
     }
+
     try {
-      await addDoc(collection(db, 'rooms'), room)
+      const roomCreated = await addDoc(collection(db, 'rooms'), room)
+      // const roomId = roomCreated.id
+
+      await updateDoc(roomCreated, { id: roomCreated.id })
       onRoomCreated()
       handleClose()
     } catch (error) {

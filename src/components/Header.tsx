@@ -1,10 +1,12 @@
-// import { useEffect, useReducer } from 'react'
+import { useState } from 'react'
 
 import logo from '@/assets/lw.svg'
-import { useAppSelector } from '@/store'
+
+import { UserInfo } from '@/components/UserInfo.tsx'
+import { MemberIcon } from '@/components/icons/MemberIcon.tsx'
 
 export function Header() {
-  const userEmail = useAppSelector(state => state.user?.email)
+  const [isOpenInfo, setIsOpenInfo] = useState(false)
 
   return (
     <div className="flex justify-between bg-[#ECEDF2] rounded-[20px] p-4">
@@ -12,7 +14,16 @@ export function Header() {
         <img alt="Логотип" src={logo} />
       </div>
 
-      <div className="">{userEmail || 'Пользователь'}</div>
+      <div className="relative">
+        <div
+          className="relative z-20 flex items-center justify-center w-[52px] h-[52px] rounded-xl bg-brand-color cursor-pointer"
+          onClick={() => setIsOpenInfo(!isOpenInfo)}
+        >
+          <MemberIcon className="fill-white" />
+        </div>
+
+        {isOpenInfo && <UserInfo />}
+      </div>
     </div>
   )
 }

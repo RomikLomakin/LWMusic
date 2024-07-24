@@ -1,37 +1,21 @@
-import { RoomType } from '@/core/rooms/types.ts'
+import { useParams } from 'react-router-dom'
 
-import { MembersIcon } from '@/components/icons/MembersIcon'
+import { UsersList } from '@/components/UsersList.tsx'
+import { Chat } from '@/components/chat/Chat.tsx'
 
-export function Room({ room }: { room: RoomType }) {
+export function Room() {
+  // const { id } = useParams()
+
   return (
-    <div className="flex items-center justify-between bg-white rounded-xl pr-8">
-      <div className="flex items-center">
-        <div className="w-[100px] h-[100px] rounded-2xl overflow-hidden mr-7">
-          <img
-            alt="Превью комнаты"
-            className="w-full h-full object-cover"
-            src={room.image}
-          />
-        </div>
-
-        <div>
-          <p className="text-2xl font-ultrabold">{room.name}</p>
-          <div className="flex items-center">
-            {room.categories?.map((category, index) => (
-              <div className="flex items-center" key={index}>
-                {index > 0 && (
-                  <div className="w-[6px] h-[6px] bg-secondary-text mx-2 rounded-full"></div>
-                )}
-                <span className="text-[#5C5866]">{category.title}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+    <div className="flex h-full gap-x-2">
+      <div className="flex flex-col gap-2 max-w-[320px]">
+        <UsersList />
+        <Chat />
       </div>
 
-      <div className="flex items-center">
-        <MembersIcon className="mr-2" />
-        <span>27</span>
+      <div>
+        <div className="">ТУТ ЕБУЧЕЕ ВИДЕО КОТОРОЕ Я НЕ ЗНАЮ КАК ДЕЛАТЬ</div>
+        <div className="">ОЧЕРЕДЬ</div>
       </div>
     </div>
   )

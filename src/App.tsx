@@ -127,6 +127,27 @@ const theme = createTheme({
         },
       },
     },
+    MuiList: {
+      styleOverrides: {
+        root: {
+          paddingBottom: 0,
+          paddingTop: 0,
+        },
+      },
+    },
+    MuiListItemButton: {
+      styleOverrides: {
+        root: {
+          '&:hover': {
+            backgroundColor: '#E9E2FF',
+          },
+          paddingBottom: 0,
+          paddingLeft: '20px',
+          paddingRight: '20px',
+          paddingTop: 0,
+        },
+      },
+    },
   },
   palette: {
     error: {
@@ -173,7 +194,11 @@ export function App() {
           <Routes>
             <Route element={<StartScreen />} path="/" />
             <Route element={<StartScreen />} path="/register" />
-            <Route element={<MainScreen />} path="/rooms" />
+            <Route element={<MainScreen />} path="/*">
+              {/*<Route element={<Room />} path="/rooms/:id" />*/}
+              {/*<Route element={<Rooms />} path="/rooms" />*/}
+              {/* Здесь можно добавить другие маршруты */}
+            </Route>
           </Routes>
         </AuthProvider>
       </ThemeProvider>
