@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 
 import { auth, db } from '@/firebase.ts'
-import { Button, IconButton, InputAdornment } from '@mui/material'
+import { Message } from '@/types/Message.ts'
+import { IconButton, InputAdornment } from '@mui/material'
 import TextField from '@mui/material/TextField'
 import { format } from 'date-fns'
 import {
@@ -15,6 +16,7 @@ import {
 } from 'firebase/firestore'
 
 import { MessagesList } from '@/components/chat/MessagesList.tsx'
+import { ArrowUpIcon } from '@/components/icons/ArrowUpIcon.tsx'
 import { SendIcon } from '@/components/icons/SendIcon.tsx'
 
 export function Chat() {
@@ -55,7 +57,7 @@ export function Chat() {
   useEffect(() => {
     const q = query(collection(db, 'messages'), orderBy('timestamp', 'asc'))
     const unsubscribe = onSnapshot(q, querySnapshot => {
-      const msgs: any = []
+      const msgs: Message[] = []
       querySnapshot.forEach(doc => {
         const data = doc.data()
         const timestamp = data.timestamp
@@ -97,37 +99,40 @@ export function Chat() {
 
   return (
     <div className="flex flex-col pt-6 pb-2 px-2 h-1/2 bg-gray-block rounded-[20px]">
-      <h2 className="font-ultrabold text-[28px] mb-4">Чат</h2>
-
       <div className="flex flex-col justify-between h-full flex-1 min-h-0">
-        <MessagesList messages={messages} users={users} />
+        <h2 className="flex justify-between items-center font-ultrabold text-[28px] mb-4 cursor-pointer px-5">
+          Чат{' '}
+          <ArrowUpIcon className="fill-brand-color" sx={{ width: '16px' }} />
+        </h2>
 
-        <TextField
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                  disabled={!text}
-                  onClick={handleSubmitMessage}
-                  sx={{
-                    '&:hover': {
-                      backgroundColor: 'transparent',
-                    },
-                  }}
-                >
-                  <SendIcon className="fill-accent" />
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-          fullWidth
-          label="Введите текст"
-          onChange={e => setText(e.target.value)}
-          sx={{ backgroundColor: 'white', borderRadius: '16px' }}
-          value={text}
-          variant="filled"
-        />
+        <MessagesList messages={messages} users={users} />
       </div>
+
+      <TextField
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <IconButton
+                disabled={!text}
+                onClick={handleSubmitMessage}
+                sx={{
+                  '&:hover': {
+                    backgroundColor: 'transparent',
+                  },
+                }}
+              >
+                <SendIcon className="fill-accent" />
+              </IconButton>
+            </InputAdornment>
+          ),
+        }}
+        fullWidth
+        label="Введите текст"
+        onChange={e => setText(e.target.value)}
+        sx={{ backgroundColor: 'white', borderRadius: '16px' }}
+        value={text}
+        variant="filled"
+      />
     </div>
   )
 }

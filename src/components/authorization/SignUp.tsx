@@ -72,9 +72,7 @@ export function SignUp() {
 
           <TextField
             autoComplete="new-password"
-            error={errorPassword}
             fullWidth
-            helperText={errorPassword ? 'Пароли не совпадают.' : ''}
             label="Пароль"
             onChange={e => setPassword(e.target.value)}
             type="password"

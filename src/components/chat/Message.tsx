@@ -4,7 +4,8 @@ import { clsx } from 'clsx'
 
 import { MemberIcon } from '@/components/icons/MemberIcon.tsx'
 
-export function Message({ message, user }) {
+// TODO поправить типы
+export function Message({ message, user }: { message: any; user: any }) {
   const userUid = useSelector(state => state.user?.uid)
   const isMyMessage = message.uid === userUid
 

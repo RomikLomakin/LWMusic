@@ -1,4 +1,5 @@
 import { RoomType } from '@/core/rooms/types.ts'
+import { Room } from '@/core/rooms/types/Room.ts'
 
 import { MembersIcon } from '@/components/icons/MembersIcon'
 
@@ -6,7 +7,7 @@ export function RoomItem({
   onClick,
   room,
 }: {
-  onClick: (room) => void
+  onClick: (room: Room) => void
   room: RoomType
 }) {
   return (

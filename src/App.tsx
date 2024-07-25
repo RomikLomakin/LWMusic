@@ -1,8 +1,11 @@
-// import { CssBaseline } from '@mui/material'
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { Route, Routes } from 'react-router-dom'
 import { ToastContainer, Zoom } from 'react-toastify'
 
 import { AuthProvider } from '@/contexts/authContext'
+import { auth } from '@/firebase.ts'
+import { AddUserAction } from '@/store'
 import { GlobalStyles } from '@mui/material'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 
@@ -171,12 +174,23 @@ const theme = createTheme({
 })
 
 export function App() {
-  const location = useLocation()
-  console.log('location', location)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        console.log('user', user)
+        dispatch({
+          payload: user,
+          type: 'add-user',
+        } satisfies AddUserAction)
+      }
+    })
+  }, [])
   return (
     <>
       <ThemeProvider theme={theme}>
-        <GlobalStyles styles={{ body: { color: '#180022' } }} />
+        <GlobalStyles styles={{ body: { color: '#25263E' } }} />
         <ToastContainer
           autoClose={5000}
           closeOnClick

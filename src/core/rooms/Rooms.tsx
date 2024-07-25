@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { CreateRoomModal } from '@/core/rooms/CreateRoomModal.tsx'
 import { RoomItem } from '@/core/rooms/RoomItem.tsx'
 import { useRooms } from '@/core/rooms/hooks/useRooms.ts'
-import { RoomType } from '@/core/rooms/types'
+import { Room } from '@/core/rooms/types/Room.ts'
 import { Button } from '@mui/material'
 
 export function Rooms() {
@@ -23,7 +23,7 @@ export function Rooms() {
     fetchRooms()
   }
 
-  const handleOpenRoom = room => {
+  const handleOpenRoom = (room: Room) => {
     console.log('room', room)
     navigate(`/rooms/${room.id}`)
   }
@@ -44,7 +44,7 @@ export function Rooms() {
       <div className="flex flex-col gap-y-[2px]">
         {loading && <span>Загружаем...</span>}
 
-        {rooms.map((room: RoomType, index) => (
+        {rooms.map((room: Room, index) => (
           <RoomItem
             key={index}
             onClick={() => handleOpenRoom(room)}

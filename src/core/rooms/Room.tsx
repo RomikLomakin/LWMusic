@@ -1,7 +1,9 @@
 import { useParams } from 'react-router-dom'
 
-import { UsersList } from '@/components/UsersList.tsx'
+import { VideoPlayer } from '@/core/media-zone/VideoPlayer.tsx'
+
 import { Chat } from '@/components/chat/Chat.tsx'
+import { UsersList } from '@/components/users/UsersList.tsx'
 
 export function Room() {
   // const { id } = useParams()
@@ -13,8 +15,8 @@ export function Room() {
         <Chat />
       </div>
 
-      <div>
-        <div className="">ТУТ ЕБУЧЕЕ ВИДЕО КОТОРОЕ Я НЕ ЗНАЮ КАК ДЕЛАТЬ</div>
+      <div className="w-full">
+        <VideoPlayer />
         <div className="">ОЧЕРЕДЬ</div>
       </div>
     </div>
